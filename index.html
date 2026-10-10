@@ -5,421 +5,152 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HUNTER STONE CINE 🎬</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background: linear-gradient(135deg, #0a1929 0%, #0f2a44 50%, #0a1929 100%); min-height: 100vh; color: #fff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { background: #0a1929; color: #fff; min-height: 100vh; }
         
-        header { 
-            padding: 1.2rem 2rem; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            border-bottom: 1px solid rgba(79,195,247,0.2); 
-            position: sticky; 
-            top: 0; 
-            background: rgba(10,25,41,0.95); 
-            z-index: 100; 
-            flex-wrap: wrap; 
-            gap: 1rem; 
+        header {
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(79,195,247,0.2);
         }
         
-        .logo { 
-            font-size: 1.6rem; 
-            font-weight: 900; 
-            background: linear-gradient(90deg, #4fc3f7, #03a9f4); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            background-clip: text; 
+        .logo {
+            font-size: 1.8rem;
+            color: #4fc3f7;
+            font-weight: bold;
         }
         
-        .search-bar { flex: 1; max-width: 500px; margin: 0 2rem; position: relative; }
-        .search-bar input { 
-            width: 100%; 
-            padding: 0.75rem 1rem 0.75rem 2.8rem; 
-            background: rgba(255,255,255,0.08); 
-            border: 1px solid rgba(79,195,247,0.3); 
-            border-radius: 50px; 
-            color: white; 
-            font-size: 1rem; 
-            outline: none; 
-        }
-        .search-icon { position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #4fc3f7; font-size: 1.1rem; pointer-events: none; }
-        
-        .header-buttons { display: flex; gap: 0.8rem; flex-wrap: wrap; }
-        .header-buttons button { padding: 0.6rem 1.2rem; border-radius: 50px; border: none; font-weight: 600; cursor: pointer; font-size: 0.9rem; transition: all 0.3s ease; }
-        
-        .btn-back { background: transparent; border: 1px solid #9ac7e0 !important; color: #9ac7e0; }
-        .btn-back:hover { background: rgba(154,199,224,0.15); }
-        
-        .btn-plans { background: transparent; border: 1px solid #4fc3f7 !important; color: #4fc3f7; }
-        .btn-plans:hover { background: rgba(79,195,247,0.15); }
-        
-        .btn-access { background: linear-gradient(90deg, #2ecc71, #27ae60); color: #000; }
-        .btn-access:hover { transform: scale(1.05); box-shadow: 0 0 15px rgba(46,204,113,0.4); }
-        
-        main { max-width: 1400px; margin: 0 auto; padding: 2rem; }
-        
-        .success-banner { 
-            background: rgba(46,204,113,0.1); 
-            border: 1px solid #2ecc71; 
-            border-radius: 8px; 
-            padding: 1rem; 
-            margin-bottom: 1.5rem; 
-            color: #2ecc71; 
-            display: none; 
-        }
-        .success-banner.show { display: block; }
-        
-        .plans-section { padding: 3rem 2rem; text-align: center; display: none; }
-        .plans-section.active { display: block; }
-        .plans-section h2 { font-size: 2rem; color: #81d4fa; margin-bottom: 2.5rem; }
-        
-        .plans-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
-            gap: 2rem; 
-            max-width: 700px; 
-            margin: 0 auto; 
+        .search-box {
+            max-width: 500px;
+            margin: 1rem auto;
         }
         
-        .plan-card { 
-            background: rgba(30,30,30,0.8); 
-            padding: 2rem; 
-            border-radius: 15px; 
-            border: 1px solid rgba(79,195,247,0.2); 
-            transition: all 0.3s ease; 
-        }
-        .plan-card:hover { border-color: #4fc3f7; transform: translateY(-5px); }
-        .plan-card h3 { font-size: 1.4rem; color: #81d4fa; margin-bottom: 0.5rem; }
-        .price { font-size: 2.2rem; color: #4fc3f7; font-weight: 800; margin-bottom: 1rem; }
-        .plan-card ul { list-style: none; color: #9ac7e0; margin-bottom: 1.5rem; text-align: left; }
-        .plan-card ul li { padding: 0.5rem 0; border-bottom: 1px solid rgba(79,195,247,0.1); }
-        
-        .buy-btn { 
-            width: 100%; 
-            padding: 0.9rem; 
-            background: linear-gradient(90deg, #4fc3f7, #03a9f4); 
-            border: none; 
-            color: #000; 
-            font-weight: 700; 
-            border-radius: 8px; 
-            cursor: pointer; 
-            font-size: 1rem; 
-            transition: all 0.3s ease; 
-        }
-        .buy-btn:hover { transform: scale(1.02); }
-        
-        .pix-info { 
-            background: rgba(79,195,247,0.05); 
-            border: 1px solid rgba(79,195,247,0.2); 
-            border-radius: 12px; 
-            padding: 1.5rem; 
-            margin-top: 2rem; 
-            max-width: 500px; 
-            margin-left: auto; 
-            margin-right: auto; 
-        }
-        .pix-info h4 { color: #4fc3f7; margin-bottom: 0.8rem; font-size: 1.1rem; }
-        .pix-key { 
-            background: rgba(0,0,0,0.3); 
-            padding: 0.8rem; 
-            border-radius: 6px; 
-            font-family: monospace; 
-            font-size: 0.9rem; 
-            color: #fff; 
-            margin: 0.5rem 0; 
-            word-break: break-all; 
-        }
-        .copy-btn { 
-            padding: 0.5rem 1rem; 
-            background: #4fc3f7; 
-            border: none; 
-            color: #000; 
-            border-radius: 5px; 
-            cursor: pointer; 
-            font-weight: 600; 
-            margin-top: 0.5rem; 
-            transition: all 0.2s ease; 
-        }
-        .copy-btn:hover { background: #81d4fa; }
-        .timer-note { color: #ffd700; margin-top: 0.8rem; font-size: 0.9rem; }
-        
-        .content-section { display: block; }
-        .content-section.hidden { display: none; }
-        
-        .platforms-badges { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 2rem; justify-content: center; }
-        .platform-badge { 
-            background: rgba(255,255,255,0.05); 
-            border: 1px solid rgba(79,195,247,0.2); 
-            padding: 0.5rem 1rem; 
-            border-radius: 20px; 
-            font-size: 0.85rem; 
-            color: #81d4fa; 
+        .search-box input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border-radius: 25px;
+            border: 1px solid #4fc3f7;
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+            font-size: 1rem;
         }
         
-        .section-header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            margin-bottom: 1.5rem; 
-            flex-wrap: wrap; 
-            gap: 1rem; 
-        }
-        .results-title { font-size: 1.5rem; color: #81d4fa; }
-        
-        .category-filters { display: flex; gap: 0.6rem; flex-wrap: wrap; }
-        .filter-btn { 
-            background: transparent; 
-            border: 1px solid rgba(79,195,247,0.3); 
-            color: #9ac7e0; 
-            padding: 0.4rem 0.9rem; 
-            border-radius: 20px; 
-            cursor: pointer; 
-            font-size: 0.85rem; 
-            transition: all 0.3s ease; 
-        }
-        .filter-btn.active, .filter-btn:hover { background: #4fc3f7; color: #000; border-color: #4fc3f7; }
-        
-        .movies-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
-            gap: 1.5rem; 
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+            padding: 1rem;
         }
         
-        .movie-card { 
-            background: rgba(30,30,30,0.6); 
-            border-radius: 10px; 
-            overflow: hidden; 
-            border: 1px solid transparent; 
-            cursor: pointer; 
-            transition: all 0.3s ease; 
-        }
-        .movie-card:hover { border-color: #4fc3f7; transform: translateY(-5px); box-shadow: 0 10px 30px rgba(79,195,247,0.1); }
-        
-        .movie-poster { 
-            width: 100%; 
-            height: 240px; 
-            background: linear-gradient(135deg, #1e3a5f, #0f2a44); 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            overflow: hidden; 
-        }
-        .movie-poster img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
-        .movie-card:hover .movie-poster img { transform: scale(1.05); }
-        
-        .movie-info { padding: 0.8rem; }
-        .movie-title { 
-            font-size: 0.95rem; 
-            color: #fff; 
-            font-weight: 600; 
-            margin-bottom: 0.3rem; 
-            white-space: nowrap; 
-            overflow: hidden; 
-            text-overflow: ellipsis; 
-        }
-        .movie-meta { display: flex; justify-content: space-between; font-size: 0.75rem; }
-        .movie-type { color: #4fc3f7; }
-        .movie-category { 
-            background: rgba(156,39,176,0.15); 
-            color: #ce93d8; 
-            padding: 0.15rem 0.4rem; 
-            border-radius: 3px; 
-            font-size: 0.65rem; 
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: none;
+            background: rgba(79,195,247,0.2);
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
         }
         
-        .no-results { 
-            grid-column: 1 / -1; 
-            text-align: center; 
-            padding: 4rem 2rem; 
-            color: #666; 
-            font-size: 1.1rem; 
+        .filter-btn.active, .filter-btn:hover {
+            background: #4fc3f7;
+            color: #000;
         }
         
-        .player-modal { 
-            display: none; 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            background: rgba(0,0,0,0.95); 
-            z-index: 200; 
-            justify-content: center; 
-            align-items: center; 
-            padding: 1rem; 
-        }
-        .player-modal.active { display: flex; }
-        
-        .player-container { width: 100%; max-width: 900px; max-height: 90vh; overflow-y: auto; }
-        .player-header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            margin-bottom: 1rem; 
-        }
-        .player-header h3 { color: #81d4fa; font-size: 1.2rem; }
-        .close-player { 
-            background: none; 
-            border: none; 
-            color: #fff; 
-            font-size: 1.8rem; 
-            cursor: pointer; 
-            transition: color 0.2s ease; 
-        }
-        .close-player:hover { color: #4fc3f7; }
-        
-        .video-container { 
-            width: 100%; 
-            aspect-ratio: 16/9; 
-            background: linear-gradient(135deg, #1e3a5f, #0f2a44); 
-            border-radius: 10px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            color: #81d4fa; 
-            padding: 2rem; 
-            text-align: center; 
+        h2 {
+            text-align: center;
+            padding: 1rem;
+            color: #81d4fa;
         }
         
-        .play-button { 
-            font-size: 5rem; 
-            color: #4fc3f7; 
-            cursor: pointer; 
-            margin-bottom: 1rem; 
-            transition: all 0.3s ease; 
-        }
-        .play-button:hover { transform: scale(1.15); text-shadow: 0 0 30px rgba(79,195,247,0.5); }
-        
-        .status-text { line-height: 1.6; }
-        
-        .access-denied { text-align: center; padding: 2rem; color: #ff6b6b; }
-        .access-denied h3 { margin-bottom: 1rem; }
-        .access-denied p { margin-bottom: 1.5rem; }
-        
-        footer { 
-            text-align: center; 
-            padding: 2rem; 
-            color: #5a7a96; 
-            border-top: 1px solid rgba(79,195,247,0.1); 
-            margin-top: 3rem; 
+        .movies-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 1.5rem;
         }
         
-        @media (max-width: 768px) { 
-            header { flex-direction: column; text-align: center; } 
-            .search-bar { margin: 1rem 0; width: 100%; max-width: 100%; }
-            .movies-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+        .movie-card {
+            background: rgba(30,30,30,0.5);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(79,195,247,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .movie-card:hover {
+            transform: translateY(-5px);
+            border-color: #4fc3f7;
+        }
+        
+        .movie-poster {
+            width: 100%;
+            height: 240px;
+            background: #1e3a5f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .movie-poster img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .movie-info {
+            padding: 0.8rem;
+        }
+        
+        .movie-title {
+            font-size: 0.95rem;
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+        
+        .movie-type {
+            font-size: 0.8rem;
+            color: #4fc3f7;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #5a7a96;
+            margin-top: 2rem;
+        }
+        
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem;
+            color: #888;
         }
     </style>
 </head>
 <body>
     <header>
         <h1 class="logo">🎬 HUNTER STONE CINE</h1>
-        <div class="search-bar">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="searchInput" placeholder="Pesquise filmes, séries, doramas...">
-        </div>
-        <div class="header-buttons">
-            <button class="btn-back" onclick="mostrarCatalogo()">⬅️ VOLTAR</button>
-            <button class="btn-plans" onclick="mostrarPlanos()">💳 PLANOS</button>
-            <button class="btn-access" id="btnAcesso" onclick="verificarAcesso()">🔑 MEU ACESSO</button>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Pesquise um filme...">
         </div>
     </header>
 
-    <main>
-        <div class="success-banner" id="successBanner">
-            ✅ <strong>Pagamento confirmado!</strong> Seu acesso está LIBERADO! Aproveite o HUNTER STONE CINE! 🎬✨
-        </div>
-
-        <section class="plans-section" id="planosSection">
-            <h2>💳 Escolha Seu Plano</h2>
-            <div class="plans-grid">
-                <div class="plan-card">
-                    <h3>📺 Básico</h3>
-                    <div class="price">R$ 35,00</div>
-                    <ul>
-                        <li>✅ Filmes e Séries completos</li>
-                        <li>✅ Doramas e Desenhos</li>
-                        <li>✅ Qualidade HD</li>
-                        <li>✅ 1 tela</li>
-                    </ul>
-                    <button class="buy-btn" onclick="escolherPlano('Básico', '35,00')">Escolher Plano</button>
-                </div>
-                <div class="plan-card">
-                    <h3>👑 Premium</h3>
-                    <div class="price">R$ 50,00</div>
-                    <ul>
-                        <li>✅ Tudo do Plano Básico</li>
-                        <li>✅ Qualidade Full HD e 4K</li>
-                        <li>✅ 2 telas ao mesmo tempo</li>
-                        <li>✅ Novidades primeiro</li>
-                    </ul>
-                    <button class="buy-btn" onclick="escolherPlano('Premium', '50,00')">Escolher Plano</button>
-                </div>
-            </div>
-            <div class="pix-info" id="pixInfoBox" style="display:none;">
-                <h4>💳 Pagamento via PIX</h4>
-                <p>Plano: <strong id="planoEscolhido"></strong></p>
-                <p>Valor: <strong id="valorEscolhido"></strong></p>
-                <div class="pix-key">hunterstonepagamentos@gmail.com</div>
-                <button class="copy-btn" onclick="copiarPix()">📋 Copiar Chave PIX</button>
-                <p class="timer-note">⏳ Após pagar, clique em "Já Paguei". Sem limite de tempo!</p>
-                <br>
-                <button class="buy-btn" style="background:linear-gradient(90deg,#2ecc71,#27ae60);" onclick="confirmarPagamento()">✅ Já Paguei</button>
-            </div>
-        </section>
-
-        <section class="content-section" id="contentSection">
-            <div class="platforms-badges">
-                <span class="platform-badge">🎬 Filmes</span>
-                <span class="platform-badge">📺 Séries</span>
-                <span class="platform-badge">🌸 Doramas</span>
-                <span class="platform-badge">🎨 Desenhos</span>
-                <span class="platform-badge">🔥 Em Alta</span>
-                <span class="platform-badge">⭐ Novidades</span>
-            </div>
-            
-            <div class="section-header">
-                <h2 class="results-title" id="secaoTitulo">🔥 Em Alta — Assista Agora!</h2>
-                <div class="category-filters">
-                    <button class="filter-btn active" onclick="filtrar('todos', this)">Todos</button>
-                    <button class="filter-btn" onclick="filtrar('Filme', this)">🎬 Filmes</button>
-                    <button class="filter-btn" onclick="filtrar('Série', this)">📺 Séries</button>
-                    <button class="filter-btn" onclick="filtrar('Dorama', this)">🌸 Doramas</button>
-                    <button class="filter-btn" onclick="filtrar('Desenho', this)">🎨 Desenhos</button>
-                </div>
-            </div>
-            
-            <div class="movies-grid" id="moviesGrid"></div>
-        </section>
-    </main>
-
-    <div class="player-modal" id="playerModal">
-        <div class="player-container">
-            <div class="player-header">
-                <h3 id="filmeTitulo">Título</h3>
-                <button class="close-player" onclick="fecharPlayer()">✕</button>
-            </div>
-            <div class="video-container">
-                <div class="play-button" id="playButton" onclick="iniciarPlay()">▶</div>
-                <p class="status-text" id="statusTexto">Clique no botão acima para iniciar a reprodução</p>
-            </div>
-        </div>
+    <h2 id="sectionTitle">🔥 Todos os Títulos</h2>
+    
+    <div class="filters">
+        <button class="filter-btn active" onclick="mostrarTodos()">Todos</button>
+        <button class="filter-btn" onclick="filtrarPor('Filme')">🎬 Filmes</button>
+        <button class="filter-btn" onclick="filtrarPor('Série')">📺 Séries</button>
+        <button class="filter-btn" onclick="filtrarPor('Dorama')">🌸 Doramas</button>
+        <button class="filter-btn" onclick="filtrarPor('Desenho')">🎨 Desenhos</button>
     </div>
 
-    <div class="player-modal" id="semAcessoModal">
-        <div class="player-container">
-            <div class="player-header">
-                <h3>🔒 Conteúdo Bloqueado</h3>
-                <button class="close-player" onclick="fecharAviso()">✕</button>
-            </div>
-            <div class="access-denied">
-                <h3>Este conteúdo é exclusivo para assinantes</h3>
-                <p>Escolha um plano e faça o pagamento via PIX para liberar acesso completo a todo o catálogo!</p>
-                <br>
-                <button class="buy-btn" onclick="fecharAviso(); mostrarPlanos()">Ver Planos Disponíveis</button>
-            </div>
-        </div>
+    <div class="movies-container" id="moviesContainer">
+        <!-- Os filmes vão aparecer aqui -->
     </div>
 
     <footer>
@@ -428,21 +159,81 @@
 
     <script>
         const catalogo = [
-            { titulo: "Interestelar", tipo: "Filme", categoria: "Ficção", plataforma: "Netflix", capa: "https://image.tmdb.org/t/p/w342/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg" },
-            { titulo: "John Wick", tipo: "Filme", categoria: "Ação", plataforma: "Netflix", capa: "https://image.tmdb.org/t/p/w342/7gKIjtMMeW5ZVUA14WzN2nmFz7o.jpg" },
-            { titulo: "Coringa", tipo: "Filme", categoria: "Drama", plataforma: "Netflix", capa: "https://image.tmdb.org/t/p/w342/udDclJoHjfjb9lDjskNwoz7YkAC.jpg" },
-            { titulo: "Avatar: O Caminho da Água", tipo: "Filme", categoria: "Ficção", plataforma: "Disney+", capa: "https://image.tmdb.org/t/p/w342/9uOETcuFwbk5RYh4cFf3OBdCwfW.jpg" },
-            { titulo: "Homem de Ferro", tipo: "Filme", categoria: "Ação", plataforma: "Disney+", capa: "https://image.tmdb.org/t/p/w342/8uO0gUM8aNqYLs1OsTBQiXu0fEv.jpg" },
-            { titulo: "Velozes e Furiosos 10", tipo: "Filme", categoria: "Ação", plataforma: "Várias", capa: "https://image.tmdb.org/t/p/w342/j9VhOwKM4QH2Vh9jL3QwY9Vh9wY.jpg" },
-            { titulo: "Invocação do Mal", tipo: "Filme", categoria: "Terror", plataforma: "Várias", capa: "https://image.tmdb.org/t/p/w342/5sU922d0nL0b9XoK2uK2uK2uK2.jpg" },
-            { titulo: "It: A Coisa", tipo: "Filme", categoria: "Terror", plataforma: "Várias", capa: "https://image.tmdb.org/t/p/w342/9O0H3M8xQZ9uYj3K5XzWbQ9uQ0b.jpg" },
-            { titulo: "Forrest Gump", tipo: "Filme", categoria: "Drama", plataforma: "Várias", capa: "https://image.tmdb.org/t/p/w342/arwvc94UQwqR3YQzKz9GQhO0u4t.jpg" },
-            { titulo: "As Branquelas", tipo: "Filme", categoria: "Comédia", plataforma: "Várias", capa: "https://image.tmdb.org/t/p/w342/mv99uHdIhlXvsvd5tB5YdPwQ0Qk.jpg" },
-            { titulo: "Minha Mãe é uma Peça", tipo: "Filme", categoria: "Comédia", plataforma: "Globoplay", capa: "https://image.tmdb.org/t/p/w342/6ZvXbC9vYw9vYw9vYw9vYw9vYw.jpg" },
-            { titulo: "Cidade de Deus", tipo: "Filme", categoria: "Drama", plataforma: "Globoplay", capa: "https://image.tmdb.org/t/p/w342/6nL8bCzX9bQbQbQbQbQbQbQbQb.jpg" },
-            { titulo: "O Auto da Compadecida", tipo: "Filme", categoria: "Comédia", plataforma: "Globoplay", capa: "https://image.tmdb.org/t/p/w342/7bQbQbQbQbQbQbQbQbQbQbQbQb.jpg" },
-            { titulo: "Stranger Things", tipo: "Série", categoria: "Ficção", plataforma: "Netflix", capa: "https://image.tmdb.org/t/p/w342/49WJfeN0moxb9IPfGn8AIqMGskD.jpg" },
-            { titulo: "Round 6", tipo: "Série", categoria: "Suspense", plataforma: "Netflix", capa: "https://image.tmdb.org/t/p/w342/dDlEmu3EZ0Pgg93K2SVNLCjCSvE.jpg" },
-            { titulo: "La Casa de Papel", tipo: "Série", categoria: "Ação", plataforma: "Netflix", capa: "https://image.tmdb.org/t/p/w342/reEMJA1uzscCbkpeRJeTT2bjqAg.jpg" },
-            { titulo: "Breaking Bad", tipo: "Série", categoria: "Drama", plataforma: "Netflix", capa: "https://image.tmdb.org/t/p/w342/ggFHVcm0VpWyM9CZvL3YxJ9XoGK.jpg" },
-            { titulo: "Game of Thrones", tipo: "Série", categoria: "Fantasia", p
+            { titulo: "Interestelar", tipo: "Filme", capa: "https://image.tmdb.org/t/p/w342/rAiYTfKGqDCRIIqo664sY9XZIvQ.jpg" },
+            { titulo: "John Wick", tipo: "Filme", capa: "https://image.tmdb.org/t/p/w342/7gKIjtMMeW5ZVUA14WzN2nmFz7o.jpg" },
+            { titulo: "Coringa", tipo: "Filme", capa: "https://image.tmdb.org/t/p/w342/udDclJoHjfjb9lDjskNwoz7YkAC.jpg" },
+            { titulo: "Stranger Things", tipo: "Série", capa: "https://image.tmdb.org/t/p/w342/49WJfeN0moxb9IPfGn8AIqMGskD.jpg" },
+            { titulo: "Round 6", tipo: "Série", capa: "https://image.tmdb.org/t/p/w342/dDlEmu3EZ0Pgg93K2SVNLCjCSvE.jpg" },
+            { titulo: "La Casa de Papel", tipo: "Série", capa: "https://image.tmdb.org/t/p/w342/reEMJA1uzscCbkpeRJeTT2bjqAg.jpg" },
+            { titulo: "Pousando no Amor", tipo: "Dorama", capa: "https://image.tmdb.org/t/p/w342/ok7O70zqKq9m9vYj3XzWbQ9uQ0b.jpg" },
+            { titulo: "Rainha das Lágrimas", tipo: "Dorama", capa: "https://image.tmdb.org/t/p/w342/6zX9z0zqKq9m9vYj3XzWbQ9uQ0b.jpg" },
+            { titulo: "Naruto", tipo: "Desenho", capa: "https://image.tmdb.org/t/p/w342/6uOvgoYNPLdvxziD6VqUaWXWXUo.jpg" },
+            { titulo: "Dragon Ball Z", tipo: "Desenho", capa: "https://image.tmdb.org/t/p/w342/7gKIjtMMeW5ZVUA14WzN2nmFz7o.jpg" },
+            { titulo: "One Piece", tipo: "Desenho", capa: "https://image.tmdb.org/t/p/w342/9O0H3M8xQZ9uYj3K5XzWbQ9uQ0b.jpg" },
+            { titulo: "Shrek", tipo: "Desenho", capa: "https://image.tmdb.org/t/p/w342/mv99uHdIhlXvsvd5tB5YdPwQ0Qk.jpg" },
+            { titulo: "Avatar: O Caminho da Água", tipo: "Filme", capa: "https://image.tmdb.org/t/p/w342/9uOETcuFwbk5RYh4cFf3OBdCwfW.jpg" },
+            { titulo: "Homem de Ferro", tipo: "Filme", capa: "https://image.tmdb.org/t/p/w342/8uO0gUM8aNqYLs1OsTBQiXu0fEv.jpg" },
+            { titulo: "Breaking Bad", tipo: "Série", capa: "https://image.tmdb.org/t/p/w342/ggFHVcm0VpWyM9CZvL3YxJ9XoGK.jpg" },
+            { titulo: "Uma Advogada Extraordinária", tipo: "Dorama", capa: "https://image.tmdb.org/t/p/w342/9uX9z0zqKq9m9vYj3XzWbQ9uQ0b.jpg" },
+            { titulo: "Frozen", tipo: "Desenho", capa: "https://image.tmdb.org/t/p/w342/9uOETcuFwbk5RYh4cFf3OBdCwfW.jpg" },
+            { titulo: "Toy Story", tipo: "Desenho", capa: "https://image.tmdb.org/t/p/w342/8uO0gUM8aNqYLs1OsTBQiXu0fEv.jpg" }
+        ];
+
+        function mostrarCatalogo(lista) {
+            const container = document.getElementById('moviesContainer');
+            container.innerHTML = '';
+            
+            if (lista.length === 0) {
+                container.innerHTML = '<p class="no-results">Nenhum título encontrado 😔</p>';
+                return;
+            }
+            
+            lista.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'movie-card';
+                card.innerHTML = `
+                    <div class="movie-poster">
+                        <img src="${item.capa}" alt="${item.titulo}" onerror="this.src='https://via.placeholder.com/300x450/1e3a5f/ffffff?text=${encodeURIComponent(item.titulo)}'">
+                    </div>
+                    <div class="movie-info">
+                        <h3 class="movie-title">${item.titulo}</h3>
+                        <span class="movie-type">${item.tipo}</span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function mostrarTodos() {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById('sectionTitle').textContent = '🔥 Todos os Títulos — ' + catalogo.length + ' itens';
+            mostrarCatalogo(catalogo);
+        }
+
+        function filtrarPor(tipo) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            const filtrado = catalogo.filter(i => i.tipo === tipo);
+            document.getElementById('sectionTitle').textContent = '📂 ' + tipo + 's — ' + filtrado.length + ' títulos';
+            mostrarCatalogo(filtrado);
+        }
+
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const termo = this.value.toLowerCase().trim();
+            if (!termo) {
+                mostrarCatalogo(catalogo);
+                document.getElementById('sectionTitle').textContent = '🔥 Todos os Títulos';
+                return;
+            }
+            const resultado = catalogo.filter(i => i.titulo.toLowerCase().includes(termo));
+            document.getElementById('sectionTitle').textContent = '🔍 Buscando: "' + termo + '"';
+            mostrarCatalogo(resultado);
+        });
+
+        // Carrega tudo quando a página abre
+        mostrarCatalogo(catalogo);
+    </script>
+</body>
+</html>
+
